@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block intro %}
+	<script type="text/javascript">$('#main_outter_box').css("height","825px");</script>
+	<h4>About and FAQ</h4>
+	<hr noshade>
+	<div style="font-size:0;height:4px;"></div>
+	<p><b>Intro</b></p>
+	<p>This is a web app for geotechnical engineering that calculates the following lateral earth pressure coefficients 
+	   for granular soils that are required for a geotech to perform retaining wall design:
+		<ul>
+			<li>Active earth pressure coefficient, Ka (Rankine & Coulomb)</li>	
+			<li>Passive earth pressure coefficient, Kp (Rankine & Coulomb)</li>	
+			<li>At-Rest earth pressure coefficient, Ko (Mayne & Kulhawy) </li>	
+		</ul></p>
+	   
+	<p>This web app does not perform retaining wall design. Rather, it calculates coefficients that are needed to determine the 
+	   lateral earth pressure that can act on retaining walls. It is up to the geotechnical engineer or structural engineer to 
+	   determine which coefficient applies depending on the retaining wall, retainied earth material, geometry, and other
+	   factors.</p>
+		
+	<p><b>Supported Browsers </b></p>
+	<p>Google Chrome, Mozilla Firefox and Safari.</p>
+		
+	<p><b>What is a Web App?</b></p>
+	<p>A web app is an application that runs on a remote server (i.e. cloud) and is an alternative to conventional software for geotech that 
+	   has to be installed on your computer. You don't have to worry about installing any geotechnical software any computer. All you need is 
+	   an active internet connection. Easy right?</p>
+	   
+	<p><b>Why Not Software?</b></p>
+	<p>Because web apps are awesome! They are very flexible, can be used on most computers/devices without installation and web apps
+	   are the future! Let's get the civil engineering profession up to date!</p>  
+	   
+	<p><b>Where do I get the soil parameter input values?</b></p>
+	<p>If you don't know the answer to this question, you shouldn't be using this web app. This is simply a tool
+	   that calculates coefficients based on user input. Refer to an civil engineer that specializes in the field of geotech 
+	   for guidance.</p>     
+	   
+	<p><b>Cost</b></p>
+	<p>Free. Why? Because we can. Developing these web apps are extremely fun and challenging. Also, it's a great way
+	   to learn more about our geotechnical engineering profession.</p>  
+	
+{% endblock %}
+{% block input %}
+
+	<h4>Retaining Wall</h4>
+	<hr noshade>
+	<!-- Start Canvas-->
+	<canvas id="canvas" width="400" height="200">
+	  <p>If you see this message, please update your browser to Google Chrome!</p>
+	</canvas>
+	<p>Wall Geometry:</p>
+		<ul>
+			<li>&beta;   : Retaining Wall Inclination (Degrees)</li>
+			<li>&alpha;    : Soil Backfill Angle (Degrees)</li>
+		</ul>
+	<p>Granular Soil Properties:</p>
+		<ul>
+			<li>&phi;: Drained Soil Friction Angle (Degrees)</li>
+			<li>&delta;: Soil-Wall Friction Angle (Degrees)</li>
+			<li>OCR : Soil Overconsolidation Ratio</li>
+		</ul>
+		
+	<br />
+	<h4>Geotechnical References & Equations</h4>
+	<hr noshade>
+	<div style="font-size:0;height:4px;"></div>
+		<p><b>Reference:</b></p> 
+	<p>Das, Braja (2006), "Principles of Foundation Engineering, 6th ed."</p> 
+	<br />
+	<dl class="equationList">
+		<dt class="list cyanBold">At-Rest Earth Pressure Coefficient, Ko</dt>
+			<dd><img class="equationImage" src="/static/images/atRest.png" alt="At-Rest Earth Pressure"><p>Mayne & Kulhawy, 1982</p></dd>
+		<dt class="list cyanBold">Rankine Active Earth Pressure Coefficient, Ka</dt>
+			<dd><img class="equationImage" src="/static/images/activeRankine.png" alt="Rankine Active Earth Pressure"></dd>
+		<dt class="list cyanBold">Rankine Passive Earth Pressure Coefficient, Kp</dt>
+			<dd><img class="equationImage" src="/static/images/passiveRankine.png" alt="Rankine Active Earth Pressure"></dd>
+		<dt class="list cyanBold">Coulomb Active Earth Pressure Coefficient, Ka-c</dt>
+			<dd><img class="equationImage" src="/static/images/activeCoulomb.png" alt="Coulomb Active Earth Pressure"></dd>
+		<dt class="list cyanBold">Coulomb Passive Earth Pressure Coefficient, Kp-c</dt>
+			<dd><img class="equationImage" src="/static/images/passiveCoulomb.png" alt="Coulomb Passive Earth Pressure"></dd>
+	</dl>
+{% endblock %}
+
+{% block figure %}
+{% endblock %}
+
+{% block results %}
+{% endblock %}

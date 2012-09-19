@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% block intro %}
+	<h4>Introduction</h4>
+	<hr noshade>
+	<div style="font-size:0;height:4px;"></div>
+	<p>This is a web app for geotechnical engineering that calculates the following lateral earth pressure coefficients 
+	   for granular soils that are required for a geotech to perform retaining wall design:
+		<ul>
+			<li>Active earth pressure coefficient, Ka (Rankine & Coulomb)</li>	
+			<li>Passive earth pressure coefficient, Kp (Rankine & Coulomb)</li>	
+			<li>At-Rest earth pressure coefficient, Ko (Mayne & Kulhawy) </li>	
+		</ul></p>
+	<p id="browserError">{{browserError}}</p>
+	
+{% endblock %}
+{% block input %}
+
+<h4>Input</h4>
+<hr noshade>
+<div style="font-size:0;height:4px;"></div>
+<form action="/results" method="post" name="input">
+	<table id="input_fields" border="0">
+		<tr>
+		    <td>Wall Inclination, &beta; (degrees)</td>
+		    <td><input	id="text_box_beta" 
+						type="number"  
+						name="wall_inclination" 
+						min="60" 
+						max="90"
+						maxlength="2"
+						placeholder="75"
+						required
+						autofocus/>
+			</td>
+		    <td id="verify_beta"></td>
+			<td id="last_beta">{{b_deg}}</td>
+		</tr>
+		<tr>
+		    <td>Soil Friction Angle, &phi; (degrees)</td>
+		    <td><input	id="text_box_phi" 
+						type="number"  
+						name="friction" 
+						min="20" 
+						max="45" 
+						maxlength="2"
+						placeholder="32"
+						required/>
+			</td>
+		    <td id="verify_phi"></td>
+			<td id="last_phi">{{p_deg}}</td>
+		</tr>
+		<tr>
+		    <td>Backfill Angle, &alpha; (degrees)</td>
+		    <td><input	id="text_box_alpha" 
+						type="number"  
+						name="backfill_angle" 
+						min="0" 
+						max="25" 
+						maxlength="2"
+						placeholder="15"
+						required />
+			</td>
+		    <td id="verify_alpha"></td>
+			<td id="last_alpha">{{a_deg}}</td>
+		</tr>
+		<tr>
+		    <td>Wall Friction, &delta; (degrees)</td>
+		    <td><input	id="text_box_delta" 
+						type="number"  
+						name="wall_friction" 
+						min="0" 
+						max="30"
+						maxlength="2" 
+						placeholder="0"
+						required />
+			</td>	
+		    <td id="verify_delta"></td>
+			<td id="last_delta">{{d_deg}}</td>
+		</tr>	
+		<tr>
+		    <td>Overconsolidation Ratio, OCR</td>
+		    <td><input	id="text_box_ocr" 
+						type="number"  
+						name="ocr" 
+						min="1" 
+						max="5"
+						maxlength="2" 
+						placeholder="1"
+						required />
+			</td>
+		    <td id="verify_ocr"></td>
+			<td id="last_ocr">{{o}}</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" id="button" value="Calculate!"></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	<div style="font-size:0;height:2px;"></div>
+</form>
+{% endblock %}
+
+{% block figure %}
+<h4>Retaining Wall</h4>
+<hr noshade>
+  <!-- Start Canvas-->
+  <canvas id="canvas" width="400" height="200">
+	<p>If you see this image, please update your browser to Google Chrome!</p>
+  </canvas>
+{% endblock %}
+
+{% block results %}
+<h4> Results</h4>
+<hr noshade>
+<div style="font-size:0;height:4px"></div>
+
+<table id="output_fields" border="0">
+	<tr>
+		<td id="table_results_heading">Coefficient </td>
+		<td id="table_results_heading">Rankine </td>
+		<td id="table_results_heading">Coulomb</td>
+		<td id="table_results_heading">M&K</td>
+	</tr>	
+	<tr>
+		<td>Active (Ka)</td>
+		<td>{{Ka}}</td>
+		<td>{{Kac1}}</td>
+		<td>-</td>
+	</tr>
+	<tr>
+		<td>Passive (Kp)</td>
+		<td>{{Kp}}</td>
+		<td>{{Kpc1}}</td>
+		<td>-</td>
+	</tr>
+	<tr>
+		<td>At-Rest (Ko)</td>
+		<td>-</td>
+		<td>-</td>
+		<td id="atRest">{{Ko}}</td>
+	</tr>	
+</table>
+<div style="font-size:0;height:10px"></div>
+<p><b>Notes:</b></p>
+{% for error in errors %}
+	<ul>
+		<li id="list_error">{{error}}</li>
+	</ul>
+{% endfor %}
+{% endblock %}
+

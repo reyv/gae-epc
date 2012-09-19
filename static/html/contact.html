@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block intro %}
+	<h4>Contact Us</h4>
+	<hr noshade>
+	<div style="font-size:0;height:4px;"></div>
+	<p>Questions, Concerns or Suggestions? Please let us know!</p>
+	<form action="/contact" method="post">
+			<p class="bold">From:</p>
+			<input class="contactFields" type="email" name="email_from"/>
+			<p class="bold">Subject:</p> 
+			<input class="contactFields" type="text" name="email_subject"/>
+			<p class="bold">Message:</p>
+			<textarea class="contactFields" name="email_message" cols="60" rows="6"></textarea><br />
+		<input type="submit" id="button" value="Send">	
+	</form>
+	<br />
+	<p id="thanks">{{Message}}</p>
+{% endblock %}
+
+{% block input %}
+{% endblock %}
+
+{% block figure %}
+{% endblock %}
+
+{% block results %}
+{% endblock %}
+
