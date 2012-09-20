@@ -1,4 +1,4 @@
-import os, webapp2, jinja2, re
+import os, webapp2, jinja2, re, config
 import math as m
 from google.appengine.api import mail
 
@@ -153,8 +153,8 @@ class Contact(BaseRequestHandler):
         self.generate('contact.html',{})
         
     def post(self):
-        emailTo = 'support@geotech-apps.com'
-        emailFrom = 'rey@geotech-apps.com'
+        emailTo = config.email_to
+        emailFrom = config.email_from
         emailUser = self.request.get('email_from')
         emailSubject = self.request.get('email_subject')
         emailMessage = self.request.get('email_message')

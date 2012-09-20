@@ -1,37 +1,15 @@
 //Main Page
-function inputValues(){
-	//This function determines where this is the first time the page is loaded. It does so by 
-	//Checking whether or not the At-Rest coefficient is >0. The purpose for his function is to
-	// replace input field values with previously provided input from the user. Not the best way,
-	// But it works for now.
-	var atRest = Number($("#atRest").html());
-	
-	if(atRest>0){
-	    $("#text_box_beta").val(Number($("#last_beta").text()));	
-	    $("#text_box_phi").val(Number($("#last_phi").text()));
-	    $("#text_box_alpha").val(Number($("#last_alpha").text()));
-	    $("#text_box_delta").val(Number($("#last_delta").text()));
-	    $("#text_box_ocr").val(Number($("#last_ocr").text()));
-	}else{
-	    $("#text_box_beta").val("");	
-	    $("#text_box_phi").val("");
-	    $("#text_box_alpha").val("");
-	    $("#text_box_delta").val("");
-	    $("#text_box_ocr").val("");	
-	}
-}
-
 function startWall(Beta,Alpha){
-  var B = Number(Beta);
-  var A = Number(Alpha);
-  var last_beta = Number($("#last_beta").html());
-  var last_alpha = Number($("#last_alpha").html());
-  if(last_beta===0 && last_alpha===0){
+  if(Beta===0 && Alpha===0){
     drawWall(75,15);
   }else{
-    drawWall(last_beta,last_alpha);
+    drawWall(Beta,Alpha);
   }
 }
+
+$(document).ready(startWall(
+  $('#text_box_beta').val(),$('#text_box_alpha').val()
+));
 
 function validate(elem, id, min, max){
 	var numericExpression = /^[.0-9]+$/;
@@ -46,11 +24,6 @@ function validate(elem, id, min, max){
 	    $(id).html("ERROR");
 	}    
 }
-
-$(document).ready(startWall(
-  $('#last_beta').val(),$('#last_alpha').val()
-  ),inputValues()
-);
 
 $('#text_box_beta').change(function (){
   var beta = $(this).val();

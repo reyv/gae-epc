@@ -226,13 +226,6 @@ header{
 	text-align: center;
 }
 
-#last_beta, #last_phi, #last_delta, #last_alpha, #last_ocr{
-	font: 12px arial;
-	width:100px;
-	text-align: center;
-	display:none;
-}
-
 /*Results Box Properties*/
 #table_results_heading{
 	font: bold 15px arial;
