@@ -10,20 +10,21 @@ class BaseRequestHandler(webapp2.RequestHandler):
     values = {}
     values.update(template_values)  
     path = os.path.join(os.path.dirname(__file__),'static/html/')
-    jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(path))
+    jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(path),autoescape=True)
     template = jinja_environment.get_template(template_name)
     self.response.out.write(template.render(template_values))
 
 class ErrorCheck(Exception):
-    #A user-defined exception class.
+    """A user-defined exception class"""
     def __init__(self, param, paramName, Min, Max):
         Exception.__init__(self)
         self.param = param
         self.paramName = paramName
         self.Min = Min
         self.Max = Max
-    #Determines whether the input values are within tolerable limits
+    
     def numRange(self):
+        """Determines whether the input values are within tolerable limits"""
         if self.param < self.Min:
             return False
         elif self.param > self.Max:
@@ -32,10 +33,10 @@ class ErrorCheck(Exception):
             return True  
 
 class MainHandler(BaseRequestHandler):
-    #Main Request Handler that renders main page.
+    """Main Request Handler that renders main page"""
   
     def browserDetect(self, user_agent):
-      #Very simple browser detection function.
+      """Very simple browser detection function."""
       if 'MSIE' in user_agent:
         return 'This web application is not supported by Internet Explorer browser. Please use either Google Chorme or Safari.'
       else:
@@ -49,7 +50,7 @@ class MainHandler(BaseRequestHandler):
             })
         
 class Calculation(BaseRequestHandler):
-    #Request Handler that processes form and performs server-side error handling.
+    """Request Handler that processes form and performs server-side error handling."""
 
     def erase(self,errors):     
         del errors[0:len(errors)]
@@ -147,7 +148,7 @@ class Calculation(BaseRequestHandler):
             })
 
 class Contact(BaseRequestHandler):
-    #This class generates contact.html so directory structure is hidden from user.
+    """Generates contact.html so directory structure is hidden from user."""
     def get(self):
         self.generate('contact.html',{})
         
@@ -174,9 +175,8 @@ class Contact(BaseRequestHandler):
                         'Message':   Message
           })
 	  
-
 class About(BaseRequestHandler):
-    #This class generates about.html.
+    """Generates about.html."""
     def get(self):
         self.generate('about.html',{})
       
