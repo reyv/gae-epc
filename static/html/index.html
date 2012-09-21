@@ -112,42 +112,41 @@
 {% endblock %}
 
 {% block results %}
-<h4> Results</h4>
-<hr noshade>
-<div style="font-size:0;height:4px"></div>
+	<h4> Results</h4>
+	<hr noshade>
+	<div style="font-size:0;height:4px"></div>
 
-<table id="output_fields" border="0">
-	<tr>
-		<td id="table_results_heading">Coefficient </td>
-		<td id="table_results_heading">Rankine </td>
-		<td id="table_results_heading">Coulomb</td>
-		<td id="table_results_heading">M&K</td>
-	</tr>	
-	<tr>
-		<td>Active (Ka)</td>
-		<td>{{Ka}}</td>
-		<td>{{Kac1}}</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td>Passive (Kp)</td>
-		<td>{{Kp}}</td>
-		<td>{{Kpc1}}</td>
-		<td>-</td>
-	</tr>
-	<tr>
-		<td>At-Rest (Ko)</td>
-		<td>-</td>
-		<td>-</td>
-		<td id="atRest">{{Ko}}</td>
-	</tr>	
-</table>
-<div style="font-size:0;height:10px"></div>
-<p><b>Notes:</b></p>
-{% for error in errors %}
-	<ul>
-		<li id="list_error">{{error}}</li>
-	</ul>
-{% endfor %}
+	<table id="output_fields" border="0">
+		<tr>
+			<td id="table_results_heading">Coefficient </td>
+			<td id="table_results_heading">Rankine </td>
+			<td id="table_results_heading">Coulomb</td>
+			<td id="table_results_heading">M&amp;K</td>
+		</tr>	
+		<tr>
+			<td>Active (Ka)</td>
+			<td>{{Ka}}</td>
+			<td>{{Kac1}}</td>
+			<td>-</td>
+		</tr>
+		<tr>
+			<td>Passive (Kp)</td>
+			<td>{{Kp}}</td>
+			<td>{{Kpc1}}</td>
+			<td>-</td>
+		</tr>
+		<tr>
+			<td>At-Rest (Ko)</td>
+			<td>-</td>
+			<td>-</td>
+			<td id="atRest">{{Ko}}</td>
+		</tr>	
+	</table>
+	<div style="font-size:0;height:10px"></div>
+	<p><b>Notes:</b></p>
+	{% for error in errors %}
+		<ul>
+			<li id="list_error">{{error}}</li>
+		</ul>
+	{% endfor %}
 {% endblock %}
-

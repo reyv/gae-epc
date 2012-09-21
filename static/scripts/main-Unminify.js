@@ -1,15 +1,16 @@
 //Main Page
-function startWall(Beta,Alpha){
-  if(Beta===0 && Alpha===0){
-    drawWall(75,15);
-  }else{
-    drawWall(Beta,Alpha);
-  }
-}
 
-$(document).ready(startWall(
-  $('#text_box_beta').val(),$('#text_box_alpha').val()
-));
+$(document).ready(function (){
+	beta = $('#text_box_beta').val();
+	alpha = $('#text_box_alpha').val();
+	if(beta==='' && alpha===''){
+		drawWall(75,15);
+	}else if(beta==undefined && alpha==undefined){
+		drawWall(75,15);
+	}else{
+		drawWall(beta,alpha);
+	}
+});
 
 function validate(elem, id, min, max){
 	var numericExpression = /^[.0-9]+$/;
