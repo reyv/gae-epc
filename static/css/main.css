@@ -218,9 +218,9 @@ header{
 	text-align: center;
 }
 
-#verify_beta, #verify_phi, #verify_delta, #verify_alpha, #verify_ocr{
+.verify{
 	font: 12px arial;
-	color: red;
+	color: #00B4E5;
 	font-weight: bold;
 	width:100px;
 	text-align: center;
