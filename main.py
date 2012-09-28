@@ -46,7 +46,7 @@ class MainHandler(BaseRequestHandler):
         user_agent = os.environ.get('HTTP_USER_AGENT')
         browserError = self.browserDetect(user_agent)
         self.generate('index.html',{
-                'browserError':    browserError
+                      'browserError':    browserError
             })
         
 class Calculation(BaseRequestHandler):
