@@ -103,6 +103,13 @@ header{
 	height: 60px;
 }
 
+.ad_text{
+  	width: 468px;
+	height: 15px;
+	border: 1px solid red;
+  
+}
+
 #main_outter_box{
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
