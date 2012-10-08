@@ -1,9 +1,9 @@
 import os
-import re
 import webapp2
 import jinja2
 import config
 import calcs
+import contact
 
 from google.appengine.api import mail
 
@@ -40,8 +40,9 @@ class Calculation(BaseRequestHandler):
     def post(self):
         """Simple browser detection on results page"""
         user_agent = os.environ.get('HTTP_USER_AGENT')
-        browserCheck = MainHandler()
-        browserError = browserCheck.browserDetect(user_agent)
+        browserError = self.browserDetect(user_agent)
+        #browserCheck = MainHandler()
+        #browserError = browserCheck.browserDetect(user_agent)
         
         try:        
             #Get soil/wall parameters (degrees)
@@ -64,9 +65,9 @@ class Calculation(BaseRequestHandler):
             error = 'Incorrect Input. %s must be between %d and %d' %(x.paramName,x.Min, x.Max)
             #Render template with error messages. Beta & Alpha required to render Canvas drawing.
             self.generate('index.html',{
-                'b_deg':    b_deg,
-                'a_deg':    a_deg,
-                'errors':   error
+                          'b_deg':    b_deg,
+                          'a_deg':    a_deg,
+                          'errors':   error
             })
 
         except ValueError, x:
@@ -78,9 +79,9 @@ class Calculation(BaseRequestHandler):
               error = 'Invalid input. Numbers only.'
             #Render template with error messages. Beta & Alpha required to render Canvas drawing.
             self.generate('index.html',{
-                'b_deg':    b_deg,
-                'a_deg':    a_deg,
-                'errors':   error
+                          'b_deg':    b_deg,
+                          'a_deg':    a_deg,
+                          'errors':   error
             })
 
         else:
@@ -106,27 +107,11 @@ class Contact(BaseRequestHandler):
         self.generate('contact.html',{})
         
     def post(self):
-        emailTo = config.email_to
-        emailFrom = config.email_from
         emailUser = self.request.get('email_from')
         emailSubject = self.request.get('email_subject')
-        emailMessage = self.request.get('email_message')    
+        emailMessage = self.request.get('email_message')
+        contact.contact_form(emailUser, emailSubject, emailMessage)
 
-        if re.match(r'\w+\.?\w+@\w+\.\w{2,3}', emailUser):
-          message = mail.EmailMessage(sender=emailFrom,subject='Geotech-Apps[EPC]: '+emailSubject)
-          message.to = emailTo
-          message.html = emailMessage + '<br /><br /> The sender is ' + emailUser
-          message.send()
-          Message = 'Thank you for contacting us.'
-          self.generate('contact.html',{
-                        'Message':   Message
-          })
-        else:
-          Message = 'You have input an invalid e-mail. Please retry.'
-	  self.generate('contact.html',{
-                        'Message':   Message
-          })
-	  
 class About(BaseRequestHandler):
     """Generates about.html."""
     def get(self):
