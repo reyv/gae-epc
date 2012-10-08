@@ -1,8 +1,15 @@
 application: earth-pressure
-version: 1
+version: 2-dev
 runtime: python27
 api_version: 1
 threadsafe: true
+
+skip_files:
+- ^(.*/)?.*~
+- ^(.*/)?.*\.py[co]
+- ^(.*/)?.*\.db
+- .gitignore
+- .git/*
 
 handlers:
 - url: /favicon\.ico
