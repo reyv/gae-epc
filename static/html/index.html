@@ -30,13 +30,14 @@
 		    <td><input	id="text_box_beta" 
 						type="number"  
 						name="wall_inclination" 
-						min="60" 
-						max="90"
-						maxlength="2"
 						placeholder="75"
 						value="{{b_deg}}"
+						maxlength="2"
+						min="60" 
+						max="90"						
 						required
-						autofocus/>
+						autofocus />
+						
 			</td>
 		    <td class="verify"></td>
 		</tr>
@@ -45,12 +46,12 @@
 		    <td><input	id="text_box_phi" 
 						type="number"  
 						name="friction" 
+						placeholder="32"
+						value="{{p_deg}}"
 						min="20" 
 						max="45" 
 						maxlength="2"
-						placeholder="32"
-						value="{{p_deg}}"
-						required/>
+						required />
 			</td>
 		    <td class="verify"></td>
 		</tr>
@@ -59,11 +60,11 @@
 		    <td><input	id="text_box_alpha" 
 						type="number"  
 						name="backfill_angle" 
-						min="0" 
-						max="25" 
-						maxlength="2"
 						placeholder="15"
 						value="{{a_deg}}"
+						maxlength="2"
+						min="0" 
+						max="25" 
 						required />
 			</td>
 		    <td class="verify"></td>
@@ -73,11 +74,11 @@
 		    <td><input	id="text_box_delta" 
 						type="number"  
 						name="wall_friction" 
-						min="0" 
-						max="30"
-						maxlength="2" 
 						placeholder="0"
 						value="{{d_deg}}"
+						maxlength="2" 
+						min="0" 
+						max="30"
 						required />
 			</td>	
 		    <td class="verify"></td>
@@ -87,11 +88,11 @@
 		    <td><input	id="text_box_ocr" 
 						type="number"  
 						name="ocr" 
-						min="1" 
-						max="5"
-						maxlength="2" 
 						placeholder="1"
 						value="{{o}}"
+						maxlength="2"
+						min="1" 
+						max="5"
 						required />
 			</td>
 		    <td class="verify"></td>
@@ -131,13 +132,13 @@
 		<tr>
 			<td>Active (Ka)</td>
 			<td>{{Ka}}</td>
-			<td>{{Kac1}}</td>
+			<td>{{Kac}}</td>
 			<td>-</td>
 		</tr>
 		<tr>
 			<td>Passive (Kp)</td>
 			<td>{{Kp}}</td>
-			<td>{{Kpc1}}</td>
+			<td>{{Kpc}}</td>
 			<td>-</td>
 		</tr>
 		<tr>
@@ -149,9 +150,9 @@
 	</table>
 	<div style="font-size:0;height:10px"></div>
 	<p><b>Notes:</b></p>
-	{% for error in errors %}
+	  {% if errors %}
 		<ul>
-			<li id="list_error">{{error}}</li>
+			<li id="list_error">{{errors}}</li>
 		</ul>
-	{% endfor %}
+	  {% endif %}
 {% endblock %}
